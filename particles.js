@@ -28,11 +28,11 @@ function particles() {
     function newPointCoord() {
 
         for (var i = 0; i < pointCount; i++) {
-            pointCoord[i][2] +=  pointCoord[i][6];
-            pointCoord[i][4] = pointCoord[i][0] + Math.sin(pointCoord[i][2])*80;
+            pointCoord[i][2] =  pointCoord[i][6]>0 ? pointCoord[i][2] + pointCoord[i][6] : pointCoord[i][2] - pointCoord[i][6];
+            pointCoord[i][4] = pointCoord[i][0] + Math.sin(pointCoord[i][2])*120;
 
-            pointCoord[i][3] +=  pointCoord[i][6];
-            pointCoord[i][5] = pointCoord[i][1] + Math.cos(pointCoord[i][3])*60;
+            pointCoord[i][3] =  pointCoord[i][6]>0 ? pointCoord[i][3] + pointCoord[i][6] : pointCoord[i][3] - pointCoord[i][6];
+            pointCoord[i][5] = pointCoord[i][1] + Math.cos(pointCoord[i][3])*160;
 
         }
 
@@ -125,6 +125,9 @@ function pointGenerator() {
             vY = vY * -1
         }
 
-        pointCoord.push([x, y, vX, vY,0,0,Math.random()*.003]);
+        var speed = Math.random();
+        speed = speed < .5 ? speed * .003 : speed * -.003;
+
+        pointCoord.push([x, y, vX, vY,0,0, speed]);
     }
 }
