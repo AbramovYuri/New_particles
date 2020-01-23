@@ -87,7 +87,7 @@ function resize() {
     canvas.height = particlesDiv[0].offsetHeight;
     canvasWidth = canvas.clientWidth;
     canvasHeight = canvas.clientHeight;
-    pointCount = (canvasWidth * canvasHeight) / 20000;    // Количество точек (автоматически) на FullHD примерно 150
+    pointCount = (canvasWidth * canvasHeight) / 12000;    // Количество точек (автоматически) на FullHD примерно 150
     console.log(pointCount);
     pointGenerator();
 }
@@ -105,11 +105,11 @@ function pointGenerator() {
 
         x = Math.random() * canvasWidth;
 
-        y = Math.random() * canvasHeight;
+        y = Math.random() * canvasHeight - (canvasHeight / 10);
 
         vX = Math.random() * pointSpeed;
         if (vX === 0) {
-            vX = Math.random() + .1;
+            vX = Math.random() + .3;
         }
         negative = Math.random();
         if (negative < .5) {
@@ -126,7 +126,7 @@ function pointGenerator() {
         }
 
         var speed = Math.random();
-        speed = speed < .5 ? speed * .003 : speed * -.003;
+        speed = speed < .5 ? speed * .005 : speed * -.006;
 
         pointCoord.push([x, y, vX, vY,0,0, speed]);
     }
